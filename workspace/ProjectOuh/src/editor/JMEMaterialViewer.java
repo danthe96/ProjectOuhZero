@@ -6,6 +6,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetManager;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.PointLight;
+import com.jme3.material.MatParam;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
@@ -31,7 +32,17 @@ public class JMEMaterialViewer extends SimpleApplication {
         geo = new Geometry("Box", box);
         
         
-        geo.setMaterial(matdata.formMaterial(assetManager));
+        Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        mat.setBoolean("UseMaterialColors", true);
+        mat.setColor("Ambient",  ColorRGBA.Orange);
+        mat.setColor("Diffuse",  ColorRGBA.Orange);
+        mat.setColor("Specular", ColorRGBA.White);
+        mat.setFloat("Shininess", 12);
+        
+        mat = matdata.formMaterial(assetManager);
+        
+        for (MatParam m:mat.getParams()) System.out.println(m); 
+        geo.setMaterial(mat);
         rootNode.attachChild(geo);
 
         lightMdl = new Geometry("Light", new Sphere(10, 10, 0.1f));
@@ -46,7 +57,7 @@ public class JMEMaterialViewer extends SimpleApplication {
 
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-1, -1, -1).normalizeLocal());
-        dl.setColor(ColorRGBA.Green);
+        dl.setColor(ColorRGBA.White);
         rootNode.addLight(dl);
     }
 

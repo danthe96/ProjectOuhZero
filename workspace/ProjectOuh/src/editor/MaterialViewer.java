@@ -1,5 +1,6 @@
 package editor;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -20,6 +21,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
@@ -38,35 +40,43 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 	JTable table;
 	JFrame testviewer;
 	JMEMaterialViewer jmeview;
-	
-	static String[] columnNames= {"Name","Value","Type"};
+	JPanel panel;
+	Thread t;
+	static String[] columnNames= {"Name","Value","Type","x"};
 	
 	
 	public MaterialViewer(MaterialData m) {
 		if (m== null) {
-			m = new MaterialData();
+			m = new MaterialData(true);
 			setTitle("new");
 		}
 		else setTitle(m.getName());
 		this.m = m;
-		setLayout(new GridLayout(4,2)); 
-		add(new JLabel("Name"));
+		
+		setLocationRelativeTo(null);
+		setLayout(new BorderLayout());
+		
+		panel = new JPanel();
+		add(panel, BorderLayout.PAGE_START);
+		
+		panel.setLayout(new GridLayout(4,2)); 
+		panel.add(new JLabel("Name"));
 		Name = new JTextField(m.getName());
-		add(Name);
+		panel.add(Name);
 
-		add(new JLabel("Material Path"));
+		panel.add(new JLabel("Material Path"));
 		MaterialPath = new JTextField(m.getMaterialPath());
-		add(MaterialPath);
+		panel.add(MaterialPath);
 		
 		JButton button = new JButton("Add");
 		button.addActionListener(this);
 		button.setActionCommand("add");
-		add(button);
+		panel.add(button);
 		
-		button = new JButton("Update");
+		button = new JButton("View in JME");
 		button.addActionListener(this);
 		button.setActionCommand("Update");
-		add(button);
+		panel.add(button);
 		
 		testviewer = new JFrame();
 		testviewer.setSize(150,150);
@@ -76,7 +86,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 
 
 		inittable();
-		setSize(300,150);
+		setSize(300,800);
 		setVisible(true);
 		
 	}
@@ -86,11 +96,12 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 		}
 		catch (Exception e) {};
 		final MaterialData md = m;
-		Thread t = new Thread(new Runnable() {
+		t = new Thread(new Runnable() {
 		    @Override
 		    public void run() {
 		        jmeview = new JMEMaterialViewer(md);
 		        jmeview.start();
+		        
 		    }
 		});
 
@@ -105,6 +116,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 				m.setMaterialPath(MaterialPath.getText());
 				MaterialLoader.getLoader().updateMaterialData(m);
 				testviewer.setVisible(false);
+				
 				jmeview.destroy();
 			}
 
@@ -164,9 +176,8 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 		    }
 		});
 		table.addMouseListener(this);
-		add(table);
+		add(table, BorderLayout.CENTER);
 		setVisible(true);
-		startJMEViewer();
 	}
 	void updateData(int ID, int col, Object value) {
 		m.changeData(ID, col, value);
@@ -175,7 +186,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 	public void actionPerformed(ActionEvent arg0) {
 		if ("add".equals(arg0.getActionCommand())) {
 
-			Object[] possibilities = {"Int", "Flo", "Col","Tex"};
+			Object[] possibilities = {"Int", "Flo", "Col","Tex","boo"};
 			String Type = (String)JOptionPane.showInputDialog(
 			                    new JFrame(),
 			                    "Select Type",
@@ -188,16 +199,14 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 			if (Type == "Col") {
 				value = JColorChooser.showDialog(null, "Farbe", null );
 			}
-			if (Type == "Tex") {
-				JFileChooser chooser = new JFileChooser();
-				chooser.showOpenDialog(null);
-				value = chooser.getSelectedFile().getAbsolutePath();
-			}
 			if (value == null) value = JOptionPane.showInputDialog("Enter a value");
 			m.add(Name,Type, value);
 			inittable();
 		}
-		if ("Update".equals(arg0.getActionCommand())) inittable();
+		if ("Update".equals(arg0.getActionCommand())) {
+			inittable();
+			startJMEViewer();
+		}
 	}
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -218,20 +227,22 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 		int row = table.rowAtPoint(e.getPoint());
 		int column = table.columnAtPoint(e.getPoint());
 		Object[][] tabledata = m.getTableData();
-		System.out.println(row+" "+column);
-		System.out.println(tabledata[row][2]);
+		   if (column == 3 && 0 == JOptionPane.showConfirmDialog(new JFrame(), "Sicher?")) {
+			   m.remove(row);
+		   }
+		
+		
 		if ("Col".equals(tabledata[row][2])) {
 			if (column == 1) {
 				updateData(row,column,JColorChooser.showDialog(null, "Farbe", (Color)tabledata[row][1] ));
-				tabledata = m.getTableData();
+
 			}
 			
-			
+			tabledata = m.getTableData();
 			Graphics g = testviewer.getGraphics();
 			g.setColor((Color) tabledata[row][1]);
 			g.fillRect(0, 0, testviewer.getWidth(), testviewer.getHeight());
 			testviewer.setVisible(true);
-			System.out.println("paintingfail");
 		}
 		if ("Tex".equals(tabledata[row][2])) {
 			System.out.println("Bild!");
@@ -241,7 +252,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 				testviewer.getGraphics().drawImage(image, 0, 0, testviewer.getWidth(), testviewer.getHeight(), null);
 				testviewer.setVisible(true);
 			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(null, "Ooooops, that is not a picture :§");
+				//JOptionPane.showMessageDialog(null, "Ooooops, that is not a picture :§");
 				e1.printStackTrace();
 			}
 		}
