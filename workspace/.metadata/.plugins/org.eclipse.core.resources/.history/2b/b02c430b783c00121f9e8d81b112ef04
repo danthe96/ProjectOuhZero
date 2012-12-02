@@ -1,0 +1,126 @@
+package editor;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import com.jme3.app.SimpleApplication;
+import com.jme3.asset.AssetManager;
+import com.jme3.collision.CollisionResults;
+import com.jme3.font.BitmapText;
+import com.jme3.input.MouseInput;
+import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.light.AmbientLight;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Ray;
+import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
+
+import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.builder.LayerBuilder;
+import de.lessvoid.nifty.builder.PanelBuilder;
+import de.lessvoid.nifty.builder.ScreenBuilder;
+import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
+import de.lessvoid.nifty.screen.DefaultScreenController;
+
+
+public class BasicRoomBuilder extends SimpleApplication{
+
+	private static final String DEL_BLOCK = "Del Block";
+
+	/**
+	 * @param args
+	 */
+	
+	WallNode wallnode = new WallNode("wallnode");
+	
+	  private ActionListener actionListener = new ActionListener() {
+		  
+		    public void onAction(String name, boolean keyPressed, float tpf) {
+		    	if (keyPressed) {
+		    		CollisionResults results = new CollisionResults();
+		        	Ray ray = new Ray(cam.getLocation(), cam.getDirection());
+		        	wallnode.collideWith(ray, results);
+		        	if (results.size() >0) {
+		        	wallnode.addAndUpdate(new RoomNode(results.getCollision(0).getGeometry()), assetManager);
+		        	}
+		    	}
+		    }
+	  };
+	
+	
+	public static void main(String[] args) {
+		new BasicRoomBuilder().start();
+
+	}
+	
+	RoomNode getOrCreateRoomNode(int x, int y, int z) {
+		
+		String NodeName = RoomNode.genName(x,y,z);
+		RoomNode node =(RoomNode) wallnode.getChild(NodeName);
+		if (node != null) return node;
+		else {
+			node = new RoomNode(x,y,z);
+			wallnode.attachChild(node);
+			return node;
+		}
+	}
+	public BasicRoomBuilder() {
+		wallnode.openRoomEndDimensions[0] = Integer.parseInt(JOptionPane.showInputDialog("Enter length"))-2;
+		wallnode.openRoomEndDimensions[1] = Integer.parseInt(JOptionPane.showInputDialog("Enter depth"))-2;
+		wallnode.openRoomEndDimensions[2] = Integer.parseInt(JOptionPane.showInputDialog("Enter height"))-2;
+		
+		
+		
+	}
+
+	private void generateRoom() {
+		
+		for (int x=0; x<=wallnode.openRoomEndDimensions[0]+1; x++)
+			for (int y=0; y<=wallnode.openRoomEndDimensions[1]+1; y++)
+				for (int z=0; z<=wallnode.openRoomEndDimensions[2]+1; z++)  {
+					if (!wallnode.isOpenRoom(x,y,z)) getOrCreateRoomNode(x, y, z);
+				}
+		for (Spatial s: wallnode.getChildren()) {
+			((RoomNode) s).updateWall(wallnode, assetManager);
+		}
+		
+		
+	}
+
+	private void initNodes() {
+		rootNode.attachChild(wallnode);
+		
+		
+	}
+
+	@Override
+	public void simpleInitApp() {
+		initNodes();
+		generateRoom();
+		
+		AmbientLight ambient = new AmbientLight();
+		ambient.setColor(ColorRGBA.White);
+		rootNode.addLight(ambient);
+		initCrossHairs();
+		initTrigger();
+	}
+
+	private void initTrigger() {
+		inputManager.addMapping(DEL_BLOCK, new MouseButtonTrigger(MouseInput.BUTTON_LEFT)); inputManager.addListener(actionListener, DEL_BLOCK);
+		
+	}
+
+	void initCrossHairs() { 
+	    guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+	    BitmapText ch = new BitmapText(guiFont, false);
+	    ch.setSize(guiFont.getCharSet().getRenderedSize() * 3);
+	    ch.setText("+");       
+	    ch.setLocalTranslation(settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() *2/3, settings.getHeight()/2 + ch.getLineHeight() / 2, 0);
+	    guiNode.attachChild(ch);
+	  }
+	
+
+}

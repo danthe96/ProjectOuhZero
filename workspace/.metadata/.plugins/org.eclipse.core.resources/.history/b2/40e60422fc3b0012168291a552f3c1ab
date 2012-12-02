@@ -1,0 +1,77 @@
+package editor;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import com.jme3.app.SimpleApplication;
+import com.jme3.asset.AssetManager;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
+
+
+public class BasicRoomBuilder extends SimpleApplication{
+
+	/**
+	 * @param args
+	 */
+	
+	WallNode wallnode = new WallNode("wallnode");
+	private int[] OpenRoomDimensions= new int[3];
+	
+	
+	public static void main(String[] args) {
+		new BasicRoomBuilder().start();
+
+	}
+	
+	RoomNode getOrCreateRoomNode(int x, int y, int z) {
+		
+		String NodeName = RoomNode.genName(x,y,z);
+		RoomNode node =(RoomNode) wallnode.getChild(NodeName);
+		if (node != null) return node;
+		else {
+			node = new RoomNode(x,y,z);
+			wallnode.attachChild(node);
+			return node;
+		}
+	}
+	public BasicRoomBuilder() {
+		OpenRoomDimensions[0] = Integer.parseInt(JOptionPane.showInputDialog("Enter length"));
+		OpenRoomDimensions[1] = Integer.parseInt(JOptionPane.showInputDialog("Enter depth"));
+		OpenRoomDimensions[2] = Integer.parseInt(JOptionPane.showInputDialog("Enter height"));
+		
+		
+		
+	}
+
+	private void generateRoom() {
+		
+		for (int x=0; x<OpenRoomDimensions[0]; x++)
+			for (int y=0; y<OpenRoomDimensions[1]; y++)
+				for (int z=0; z<OpenRoomDimensions[2]; z++)  {
+					getOrCreateRoomNode(x, y, z);
+				}
+		for (Spatial s: wallnode.getChildren()) {
+			((RoomNode) s).updateWall(wallnode, assetManager);
+		}
+		
+		
+	}
+
+	private void initNodes() {
+		rootNode.attachChild(wallnode);
+		
+		
+	}
+
+	@Override
+	public void simpleInitApp() {
+		initNodes();
+		generateRoom();
+		
+	}
+	
+	
+
+}

@@ -1,0 +1,31 @@
+package editor;
+
+
+import com.jme3.app.SimpleApplication;
+import com.jme3.scene.Spatial;
+
+public class TierViewer extends SimpleApplication{
+	int viewedDimension = 0;
+	int viewedPoint = 0;
+	private WallNode wallnode;
+	private Node rectangle = new Node();
+	
+	TierViewer(WallNode wallnode) {
+		this.wallnode = wallnode;
+		rootNode.attachChild(rectangle)
+	}
+	@Override
+	public void simpleInitApp() {
+		viewedDimension = 0;
+		viewedPoint = 3;
+		RoomNode r;
+		for (Spatial s: wallnode.getChildren()) {
+			r = (RoomNode)s;
+			if (r.getCoords()[viewedDimension] == viewedPoint) {
+				
+			}
+		}
+	}
+	
+	
+}

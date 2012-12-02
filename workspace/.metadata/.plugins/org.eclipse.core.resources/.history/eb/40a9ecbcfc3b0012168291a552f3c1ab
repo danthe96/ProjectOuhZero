@@ -1,0 +1,16 @@
+package editor;
+
+import com.jme3.scene.Node;
+
+
+public class WallNode extends Node {
+
+	
+	public WallNode(String string) {
+		super(string);
+	}
+
+	boolean isPlot(int x,int y, int z) {
+		return (getChild(RoomNode.genName(x, y, z))!=null);
+	}
+}

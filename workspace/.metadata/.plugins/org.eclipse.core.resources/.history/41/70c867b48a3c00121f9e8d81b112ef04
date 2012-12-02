@@ -1,0 +1,61 @@
+package editor;
+
+import com.jme3.asset.AssetManager;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Node;
+
+
+public class WallNode extends Node {
+	public int[] openRoomEndDimensions= new int[3]; //In diesem Bereich ist immer Nichts. (Spart VIEL Rechenleistung)
+	public int[] openRoomStartDimensions = {1,1,1};
+	
+	public WallNode(String string) {
+		super(string);
+	}
+
+	boolean isPlot(int x,int y, int z) {
+		if (isOpenRoom(x, y, z)) return true;
+		return isActualPlot(x,y,z);
+	}
+
+	boolean isActualPlot(int x,int y, int z) {
+		return isActualPlot(RoomNode.genName(x, y, z));
+	}
+	
+	private boolean isActualPlot(String genName) {
+		// TODO Auto-generated method stub
+		return getChild(genName) != null;
+	}
+
+	public boolean isOpenRoom(int x, int y, int z) {
+		if (x<openRoomStartDimensions[0] || x > openRoomEndDimensions[0]) return false; 
+		if (y<openRoomStartDimensions[1] || y > openRoomEndDimensions[1]) return false; 
+		if (z<openRoomStartDimensions[2] || z > openRoomEndDimensions[2]) return false; 
+		return true;
+	}
+
+	public void addAndUpdate(RoomNode roomNode,AssetManager am) {
+		attachChild(roomNode);
+		roomNode.updateWall(this, am);
+		for (String s: roomNode.getNeighbors()) {
+			try {
+				((RoomNode)getChild(s)).updateWall(this, am);
+			}
+			catch( Exception e) {}
+		}
+		
+	}
+
+	public void removeBlock(Vector3f coordsByGeometry, AssetManager assetManager) {
+		removeBlock((int)coordsByGeometry.x,(int)coordsByGeometry.y,(int)coordsByGeometry.z, assetManager);
+		
+	}
+
+	public void removeBlock(int x, int y, int z, AssetManager am) {
+		RoomNode r = (RoomNode) getChild(RoomNode.genName(x, y, z));
+		detachChild(r);
+		for (String s: r.getNeighbors()) {
+			
+		}
+	}
+}

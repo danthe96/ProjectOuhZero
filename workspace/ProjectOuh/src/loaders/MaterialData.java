@@ -12,8 +12,6 @@ import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.texture.Texture;
 
-import util.StringComparator;
-
 public class MaterialData implements Comparable<MaterialData>, Serializable{
 
 	private String Name;
@@ -40,7 +38,7 @@ public class MaterialData implements Comparable<MaterialData>, Serializable{
 	@Override
 	public int compareTo(MaterialData arg0) {
 
-		return StringComparator.compare2Strings(getName(),arg0.getName());
+		return getName().compareTo(arg0.getName());
 	}
 	
 	public String getMaterialPath() {

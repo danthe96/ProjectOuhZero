@@ -4,4 +4,11 @@
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="loaders.MaterialData.Data"/>
+<fullyQualifiedTypeName name="com.jme3.math.ColorRGBA"/>
+<fullyQualifiedTypeName name="com.jme3.material.Material"/>
+<fullyQualifiedTypeName name="com.jme3.scene.Geometry"/>
+<fullyQualifiedTypeName name="editor.MaterialManager"/>
+<fullyQualifiedTypeName name="com.jme3.scene.plugins.ogre.MaterialLoader"/>
+<fullyQualifiedTypeName name="loaders.MaterialLoader"/>
+<fullyQualifiedTypeName name="com.jme3.asset.AssetManager"/>
 </qualifiedTypeNameHistroy>

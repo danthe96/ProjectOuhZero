@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="33" version="2.0">
+<workbench progressCount="31" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="225" y="216">
 <fastViewData fastViewLocation="1024"/>
@@ -34,6 +34,9 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
 </presentation>
 </folder>
 </info>
@@ -42,9 +45,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectOuh/src/editor/JMEMaterialViewer.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1866" selectionTopPixel="232"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaterialData.java" partName="MaterialData.java" path="C:/Users/David/Documents/GitHub/ProjectOuh/workspace/ProjectOuh/src/loaders/MaterialData.java" title="MaterialData.java" tooltip="ProjectOuh/src/loaders/MaterialData.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaterialData.java" partName="MaterialData.java" path="C:/Users/David/Documents/GitHub/ProjectOuh/workspace/ProjectOuh/src/loaders/MaterialData.java" title="MaterialData.java" tooltip="ProjectOuh/src/loaders/MaterialData.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectOuh/src/loaders/MaterialData.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1090" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1090" selectionTopPixel="832"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaterialViewer.java" partName="MaterialViewer.java" path="C:/Users/David/Documents/GitHub/ProjectOuh/workspace/ProjectOuh/src/editor/MaterialViewer.java" title="MaterialViewer.java" tooltip="ProjectOuh/src/editor/MaterialViewer.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectOuh/src/editor/MaterialViewer.java"/>
@@ -58,12 +61,23 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectOuh/src/editor/MaterialManager.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="154" selectionOffset="2362" selectionTopPixel="0"/>
 </editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RoomNode.java" partName="RoomNode.java" path="C:/Users/David/Documents/GitHub/ProjectOuh/workspace/ProjectOuh/src/editor/RoomNode.java" title="RoomNode.java" tooltip="ProjectOuh/src/editor/RoomNode.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectOuh/src/editor/RoomNode.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="774" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BasicRoomBuilder.java" partName="BasicRoomBuilder.java" path="C:/Users/David/Documents/GitHub/ProjectOuh/workspace/ProjectOuh/src/editor/BasicRoomBuilder.java" title="BasicRoomBuilder.java" tooltip="ProjectOuh/src/editor/BasicRoomBuilder.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectOuh/src/editor/BasicRoomBuilder.java"/>
+<editorState selectionHorizontalPixel="50" selectionLength="0" selectionOffset="1332" selectionTopPixel="172"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WallNode.java" partName="WallNode.java" path="C:/Users/David/Documents/GitHub/ProjectOuh/workspace/ProjectOuh/src/editor/WallNode.java" title="WallNode.java" tooltip="ProjectOuh/src/editor/WallNode.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ProjectOuh/src/editor/WallNode.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="760" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
 <category IMemento.internal.id="Warnings (24 items)"/>
 </expanded>
@@ -264,166 +278,160 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/editor/JMEMaterialViewer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/editor/BasicRoomBuilder.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/editor/WallNode.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/editor/RoomNode.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/loaders/MaterialData.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/editor/MaterialViewer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/asd.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/HelloPhysics.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/loaders/MaterialData.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/editor/MaterialViewer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ProjectOuh/src/editor/MaterialManager.java"/>
 </editors>
-<item historyLabel="JMEMaterialViewer.java" index="0">
-<position info="not_deleted" x="1276" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="682" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="2446" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="878" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="2">
-<position info="not_deleted" x="4280" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="2446" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="682" y="0"/>
 </item>
-<item historyLabel="JMEMaterialViewer.java" index="0">
-<position info="not_deleted" x="1276" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="943" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="2446" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="682" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="2">
-<position info="not_deleted" x="4280" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="2446" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="943" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="3301" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="539" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="3299" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="598" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="2">
-<position info="not_deleted" x="6327" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="2115" y="0"/>
 </item>
-<item historyLabel="asd.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="2129" y="0"/>
 </item>
-<item historyLabel="HelloPhysics.java" index="4">
-<position info="not_deleted" x="3548" y="159"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="2047" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="2">
-<position info="not_deleted" x="6327" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1329" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="3095" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
 </item>
-<item historyLabel="main.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="2047" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="3095" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="1">
-<position info="not_deleted" x="3097" y="50"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1329" y="0"/>
 </item>
-<item historyLabel="JMEMaterialViewer.java" index="0">
-<position info="not_deleted" x="492" y="17"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="3385" y="50"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1329" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="6654" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="2047" y="0"/>
 </item>
-<item historyLabel="main.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="6654" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="5171" y="0"/>
 </item>
-<item historyLabel="JMEMaterialViewer.java" index="0">
-<position info="not_deleted" x="1866" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="5244" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="3385" y="50"/>
+<item historyLabel="MaterialData.java" index="3">
+<position info="not_deleted" x="1090" y="0"/>
 </item>
-<item historyLabel="MaterialManager.java" index="9">
-<position info="not_deleted" x="2362" y="9"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1329" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="3385" y="50"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="1641" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1472" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="5857" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
 </item>
-<item historyLabel="JMEMaterialViewer.java" index="0">
-<position info="not_deleted" x="1866" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="451" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="1641" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
 </item>
-<item historyLabel="MaterialManager.java" index="9">
-<position info="not_deleted" x="2362" y="154"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="368" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="5841" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="213" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="3783" y="6"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1362" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="3806" y="1"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="460" y="6"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="3831" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="760" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="5841" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="396" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="5731" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1378" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="6253" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="396" y="0"/>
 </item>
-<item historyLabel="MaterialManager.java" index="9">
-<position info="not_deleted" x="2362" y="154"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="5244" y="0"/>
 </item>
-<item historyLabel="JMEMaterialViewer.java" index="0">
-<position info="not_deleted" x="1866" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1094" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="6253" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="2556" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1094" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="836" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="5267" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="2556" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="719" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="622" y="0"/>
+<item historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="5267" y="0"/>
 </item>
-<item historyLabel="MaterialViewer.java" index="7">
-<position info="not_deleted" x="1644" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1332" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="622" y="0"/>
+<item historyLabel="WallNode.java" index="1">
+<position info="not_deleted" x="760" y="0"/>
 </item>
-<item historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="723" y="0"/>
+<item historyLabel="BasicRoomBuilder.java" index="0">
+<position info="not_deleted" x="1332" y="0"/>
 </item>
-<item active="true" historyLabel="MaterialData.java" index="6">
-<position info="not_deleted" x="3515" y="74"/>
+<item active="true" historyLabel="RoomNode.java" index="2">
+<position info="not_deleted" x="5267" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -443,6 +451,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WallNode.java" tooltip="ProjectOuh/src/WallNode.java">
+<persistable path="/ProjectOuh/src/WallNode.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BasicRoomBuilder.java" tooltip="ProjectOuh/src/BasicRoomBuilder.java">
+<persistable path="/ProjectOuh/src/BasicRoomBuilder.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RoomNode.java" tooltip="ProjectOuh/src/RoomNode.java">
+<persistable path="/ProjectOuh/src/RoomNode.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaterialManager.java" tooltip="ProjectOuh/src/editor/MaterialManager.java">
 <persistable path="/ProjectOuh/src/editor/MaterialManager.java"/>
 </file>

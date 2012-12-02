@@ -117,7 +117,10 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 				MaterialLoader.getLoader().updateMaterialData(m);
 				testviewer.setVisible(false);
 				
-				jmeview.destroy();
+				try {
+					jmeview.destroy();
+				}
+				catch(Exception e) {}
 			}
 
 			@Override

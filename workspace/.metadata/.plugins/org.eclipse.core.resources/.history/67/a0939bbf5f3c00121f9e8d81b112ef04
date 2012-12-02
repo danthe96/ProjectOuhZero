@@ -1,0 +1,11 @@
+package geometries;
+
+import com.jme3.scene.Geometry;
+
+public class Walls extends Geometry{
+
+	
+	Walls(int position) {
+		
+	}
+}

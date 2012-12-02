@@ -1,0 +1,27 @@
+package editor;
+
+import javax.swing.JOptionPane;
+
+import com.jme3.scene.Node;
+
+
+public class WallNode extends Node {
+
+	
+	public WallNode(String string) {
+		super(string);
+	}
+
+	public BasicRoomBuilder() {
+		openRoomEndDimensions[0] = Integer.parseInt(JOptionPane.showInputDialog("Enter length"))-2;
+		openRoomEndDimensions[1] = Integer.parseInt(JOptionPane.showInputDialog("Enter depth"))-2;
+		openRoomEndDimensions[2] = Integer.parseInt(JOptionPane.showInputDialog("Enter height"))-2;
+		
+		
+		
+	}
+
+	boolean isPlot(int x,int y, int z) {
+		return (getChild(RoomNode.genName(x, y, z))!=null);
+	}
+}

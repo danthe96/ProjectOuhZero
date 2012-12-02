@@ -1,0 +1,8 @@
+package editor;
+
+public class TierViewer extends SimpleApplication{
+	int viewedDimension = 0;
+	int viewedPoint = 0;
+	
+	
+}

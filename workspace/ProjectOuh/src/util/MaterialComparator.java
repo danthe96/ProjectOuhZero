@@ -9,7 +9,7 @@ public class MaterialComparator  implements Comparator<Material>{
 	
 	public int compare(Material arg0, Material arg1) {
 		
-		return StringComparator.compare2Strings(arg0.getName(), arg1.getName());
+		return arg0.getName().compareTo(arg1.getName());
 	}
 		
 }

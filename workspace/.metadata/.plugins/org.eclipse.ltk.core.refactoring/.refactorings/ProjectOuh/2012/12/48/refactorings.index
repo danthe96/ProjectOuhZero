@@ -1,1 +1,16 @@
 1354385198568	Delete element
+1354389611402	Move compilation unit
+1354389669266	Move compilation unit
+1354389681923	Move compilation unit
+1354389690100	Delete element
+1354394088409	Extract method 'buildgeo'
+1354396478237	Rename field 'dimensions'
+1354396486336	Rename field 'OpenRoomDimensions'
+1354396586490	Rename field 'openRoomDimensions'
+1354438980386	Rename type 'BasicGeo'
+1354439270905	Delete element
+1354439318221	Rename type 'Postions'
+1354445430234	Extract constant 'DEL_BLOCK'
+1354448426562	Delete element
+1354457002477	Extract method 'getCoordsByGeometry'
+1354473077281	Delete element
