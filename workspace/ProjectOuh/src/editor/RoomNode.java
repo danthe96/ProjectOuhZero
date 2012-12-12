@@ -24,7 +24,7 @@ public class RoomNode extends Node{
 	protected int y;
 	protected int z;
 	
-	static String[] Materials = new String[6];
+	String[] Materials = new String[6];
 	static String DefaultMaterialName = "Simple Material";
 	static int [] indexes = { 2,0,1, 1,3,2 };
 	static Vector2f[] texCoord = {new Vector2f(0,0),new Vector2f(1,0),new Vector2f(0,1),new Vector2f(1,1)};
@@ -40,15 +40,11 @@ public class RoomNode extends Node{
 	public RoomNode(Geometry geometry) {
 		
 		Vector3f coords = getCoordsByGeometry(geometry);
-		System.out.println(coords);
-		System.out.println(geometry.getName());
 		coords = coords.add(getCoordsBehind(geometry.getName()));
-		System.out.println(coords);
 		this.x = (int) (coords.x/factor);
 		this.y = (int) (coords.y/factor);
 		this.z = (int) (coords.z/factor);
 		name = genName(x, y, z);
-		System.out.println(name);
 	}
 	public static Vector3f getCoordsByGeometry(Geometry geometry) {
 		return geometry.getLocalTranslation().add(getPostionFactorByString(geometry.getName()).mult(-1f));
@@ -180,7 +176,7 @@ public class RoomNode extends Node{
 
 	protected Geometry buildgeo(AssetManager am, Mesh mesh, int position) {
 		Geometry geo = new Geometry(Positions.positions[position], mesh);
-		Material mat = getMaterial(am, position);
+		Material mat = getMaterial(position, am);
 		geo.setMaterial(mat);
 		geo.setLocalTranslation(new Vector3f(x*factor,y*factor,z*factor).add(getPostionFactor(position)));
 		geo.setLocalScale(factor);
@@ -213,9 +209,9 @@ public class RoomNode extends Node{
 		}
 		return null;
 	}
-	private Material getMaterial(AssetManager am, int position) {
-		if (Materials[position] != null) return MaterialLoader.getLoader().get(Materials[position], am);
-		else return MaterialLoader.getLoader().get(DefaultMaterialName, am);
+	private Material getMaterial(int Postition,AssetManager am) {
+		if (Materials[Postition] != null) return MaterialLoader.getLoader().get(Materials[Postition],am);
+		return MaterialLoader.getLoader().get(DefaultMaterialName, am);
 	}
 
 	public int[] getCoords() {
@@ -241,5 +237,14 @@ public class RoomNode extends Node{
 		 {x, y, z-1},
 		 {x, y, z+1}};
 		return result;
+	}
+	public void updateMaterial(Geometry geo, String materialName, AssetManager am) {
+		
+		setMaterial(Positions.PostitionIDByString(geo.getName()), materialName, am);
+	}
+	private void setMaterial(int postition, String materialName, AssetManager am) {
+		Materials[postition] = materialName;
+		getChild(Positions.positions[postition]).setMaterial(getMaterial(postition, am));
+		
 	}
 }

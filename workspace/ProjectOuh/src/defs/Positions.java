@@ -12,5 +12,9 @@ public class Positions {
 	public static int left = 4;
 	public static int right = 5;
 	
+	public static int PostitionIDByString(String s) {
+		for (int i=0; i<positions.length;i++) if (s.equals(positions[i])) return i;
+		return -1;
+	}
 	
 }

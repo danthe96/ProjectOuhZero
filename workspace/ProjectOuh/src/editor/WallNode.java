@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
@@ -62,11 +63,15 @@ public class WallNode extends Node {
 				for (int z=startvalues[2]; z<=endvalues[2]; z++)  {
 					if (!isOpenRoom(x,y,z)) getOrCreateRoomNode(x, y, z);
 				}
+		buildwall(am);
+		
+		
+	}
+
+	public void buildwall(AssetManager am) {
 		for (Spatial s: getChildren()) {
 			((RoomNode) s).updateWall(this, am);
 		}
-		
-		
 	}
 	RoomNode getOrCreateRoomNode(int x, int y, int z) {
 		String NodeName = RoomNode.genName(x,y,z);
@@ -108,5 +113,12 @@ public class WallNode extends Node {
 			RoomNode room = (RoomNode) getChild(s);
 			if (room != null) room.updateWall(this, am);
 		}
+	}
+
+	public void updateMaterial(Geometry geo, String materialName, AssetManager am) {
+		Vector3f vec = RoomNode.getCoordsByGeometry(geo);
+		vec = vec.divide(RoomNode.factor);
+		RoomNode r = (RoomNode) getChild(RoomNode.genName((int)vec.x,(int)vec.y,(int)vec.z));
+		r.updateMaterial(geo, materialName, am);
 	}
 }

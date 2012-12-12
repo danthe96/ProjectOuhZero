@@ -33,6 +33,7 @@ public class MaterialData implements Comparable<MaterialData>, Serializable{
 		return Name;
 	}
 	public void setName(String Name) {
+		if (Name.equals("")) Name = "unnamed";
 		this.Name = Name;
 	}
 	@Override

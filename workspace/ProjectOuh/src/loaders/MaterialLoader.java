@@ -34,6 +34,8 @@ public class MaterialLoader implements Serializable{
 	public ArrayList<String> knownmaterials = new ArrayList<String>(); // hier steht der Rest :)
 	
 	public static MaterialLoader getLoader(){
+		
+		
 		if (ml == null) ml = loadML();
 		if (ml == null) {
 			JOptionPane.showMessageDialog(null,"No saved Material was found. If you run it for the first time this is normal. However, if you believe that live isnt fair and this should not have happend please report in the forum.");
@@ -45,6 +47,7 @@ public class MaterialLoader implements Serializable{
 
 	
 	public Material get(String Name, AssetManager am) {
+		System.out.println("getting");
 		Material m = new Material();
 		m.setName(Name);
 		int ID = Collections.binarySearch(materials, m, new MaterialComparator());
@@ -53,6 +56,11 @@ public class MaterialLoader implements Serializable{
 		}
 		return materials.get(ID);
 		
+	}
+	public String[] getKnownMaterials() {
+		String[] result = new String[knownmaterials.size()];
+		knownmaterials.toArray(result);
+		return result;
 	}
 	private static MaterialLoader loadML() {
 		if (Maindefinitions.makedirs) new File(savedir).mkdir();
@@ -64,6 +72,16 @@ public class MaterialLoader implements Serializable{
 		if (ID < 0) {
 			knownmaterials.add(m.getName());
 		}
+		for (Material mat: materials) {
+			if (mat.getName().equals(m.getName())) {
+				materials.remove(mat);
+				break;
+			}
+		}
+		
+		
+		
+		
 		save(savedir+m.getName()+filetype,m);
 		MaterialLoader saveobj = new MaterialLoader();
 		saveobj.knownmaterials = (ArrayList<String>) this.knownmaterials.clone();
@@ -122,11 +140,23 @@ public class MaterialLoader implements Serializable{
 
 	public void removeMaterialData(String string) {
 		knownmaterials.remove(string);
+		delete(savedir+string+filetype);
+		
+		for (String m: knownmaterials) System.out.println(m);
+		MaterialLoader saveobj = new MaterialLoader();
+		saveobj.knownmaterials = (ArrayList<String>) this.knownmaterials.clone();
+		save(savedir+savename, saveobj);
+	}
+
+
+	private void delete(String string) {
+		System.out.println(new File(string).exists());
+		System.out.println(new File(string).delete());
+		
 	}
 
 
 	public MaterialData getMaterialData(int row) {
-		// TODO Auto-generated method stub
 		return (MaterialData) load(savedir+knownmaterials.get(row)+filetype);
 	}
 }

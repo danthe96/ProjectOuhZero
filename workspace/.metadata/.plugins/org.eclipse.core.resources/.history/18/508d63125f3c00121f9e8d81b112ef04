@@ -1,5 +1,0 @@
-package geometries;
-
-public class BasicGeo extends Geometry{
-
-}
