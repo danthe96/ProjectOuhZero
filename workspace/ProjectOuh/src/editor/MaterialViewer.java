@@ -17,7 +17,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,14 +25,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 
-import util.Converter;
-
-import com.jme3.material.MatParam;
-
 import loaders.MaterialData;
 import loaders.MaterialLoader;
 public class MaterialViewer extends JFrame implements ActionListener, MouseListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	MaterialData m;
 	JTextField Name;
 	JTextField MaterialPath;
@@ -162,7 +161,11 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 		
 		final Object[][] rowData = m.getTableData();
 		table = new JTable(new AbstractTableModel() {
-		    public String getColumnName(int col) {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			public String getColumnName(int col) {
 		        return columnNames[col].toString();
 		    }
 		    public int getRowCount() { return rowData.length; }
@@ -248,9 +251,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 			testviewer.setVisible(true);
 		}
 		if ("Tex".equals(tabledata[row][2])) {
-			System.out.println("Bild!");
 			 try {
-				 System.out.println((String) tabledata[row][1] );
 				Image  image = ImageIO .read(new File ((String) tabledata[row][1] ));
 				testviewer.getGraphics().drawImage(image, 0, 0, testviewer.getWidth(), testviewer.getHeight(), null);
 				testviewer.setVisible(true);

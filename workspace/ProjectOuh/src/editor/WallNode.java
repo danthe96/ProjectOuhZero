@@ -1,7 +1,5 @@
 package editor;
 
-import java.util.ArrayList;
-
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
@@ -115,10 +113,26 @@ public class WallNode extends Node {
 		}
 	}
 
-	public void updateMaterial(Geometry geo, String materialName, AssetManager am) {
+	public void updateMaterial(Geometry geo, String materialName, AssetManager am, boolean applytoall) {
 		Vector3f vec = RoomNode.getCoordsByGeometry(geo);
 		vec = vec.divide(RoomNode.factor);
 		RoomNode r = (RoomNode) getChild(RoomNode.genName((int)vec.x,(int)vec.y,(int)vec.z));
-		r.updateMaterial(geo, materialName, am);
+		updateMaterial(geo.getName(), r, am, applytoall, materialName);
+	}
+
+	private void updateMaterial(String name, RoomNode r, AssetManager am,
+			boolean applytoall, String materialName) {
+		boolean change = r.updateMaterial(name, materialName, am);
+		if (applytoall && change) {
+			int unaffecteddimension = Positions.getDimension(Positions.PostitionIDByString(name));
+			int[][] allcoords = r.getNeighborsCoords();
+			for (int[] coords: allcoords) {
+				if (coords[unaffecteddimension] == r.getCoords()[unaffecteddimension]) {
+					RoomNode newnode = (RoomNode) getChild(RoomNode.genName(coords));
+					if (newnode!= null) updateMaterial(name,newnode,am,applytoall, materialName);
+				}
+			}
+		}
+		
 	}
 }

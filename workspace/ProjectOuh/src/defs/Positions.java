@@ -3,7 +3,7 @@ package defs;
 import com.jme3.math.Vector3f;
 
 public class Positions {
-	public static String[] positions = {"down", "up","front","back","left","right"};
+	public static String[] positions = {"down", "up","front","back","right","left"};
 	public static Vector3f[] positionsbehind= {new Vector3f(0,-1,0), new Vector3f(0,1,0), new Vector3f(0,0,-1), new Vector3f(0,0,1), new Vector3f(-1,0,0), new Vector3f(1,0,0)};
 	public static int down = 0;
 	public static int up = 1;
@@ -15,6 +15,15 @@ public class Positions {
 	public static int PostitionIDByString(String s) {
 		for (int i=0; i<positions.length;i++) if (s.equals(positions[i])) return i;
 		return -1;
+	}
+	
+	public static int getDimension(int position) { // returns the dimension the postion faces.
+		Vector3f vec = positionsbehind[position];
+		if (vec.x!=0) return 0;
+		if (vec.y!=0) return 1;
+		return 2;
+		
+		
 	}
 	
 }

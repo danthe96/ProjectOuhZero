@@ -17,6 +17,10 @@ import loaders.MaterialLoader;
 
 public class MaterialManager extends JFrame implements ActionListener, MouseListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	MaterialLoader ml = MaterialLoader.getLoader();
 	String[] columnNames = {"Name","edit","del"};
 	JTable table;
@@ -51,7 +55,11 @@ public class MaterialManager extends JFrame implements ActionListener, MouseList
 			rowData[i][2] = " x ";
 		}
 		table = new JTable(new AbstractTableModel() {
-		    public String getColumnName(int col) {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			public String getColumnName(int col) {
 		        return columnNames[col].toString();
 		    }
 		    public int getRowCount() { return rowData.length; }

@@ -22,9 +22,14 @@ import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 
 import defs.Maindefinitions;
+import editor.MaterialManager;
 
 public class MaterialLoader implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static String savedir = defs.Maindefinitions.getSavesdirectory() + "Materials/";
 	static String savename = "Materials.main";
 	static String filetype =".save";
@@ -38,8 +43,9 @@ public class MaterialLoader implements Serializable{
 		
 		if (ml == null) ml = loadML();
 		if (ml == null) {
-			JOptionPane.showMessageDialog(null,"No saved Material was found. If you run it for the first time this is normal. However, if you believe that live isnt fair and this should not have happend please report in the forum.");
+			JOptionPane.showMessageDialog(null,"No saved Material was found. If you run it for the first time this is normal. Please create a Material named 'Simple Material'.");
 			ml = new MaterialLoader();
+			new MaterialManager();
 		}
 		return ml;
 		
@@ -47,7 +53,6 @@ public class MaterialLoader implements Serializable{
 
 	
 	public Material get(String Name, AssetManager am) {
-		System.out.println("getting");
 		Material m = new Material();
 		m.setName(Name);
 		int ID = Collections.binarySearch(materials, m, new MaterialComparator());
@@ -63,10 +68,12 @@ public class MaterialLoader implements Serializable{
 		return result;
 	}
 	private static MaterialLoader loadML() {
+		System.out.println(Maindefinitions.makedirs);
 		if (Maindefinitions.makedirs) new File(savedir).mkdir();
 		return (MaterialLoader) load( savedir+savename );
 	}
 
+	@SuppressWarnings("unchecked")
 	public void updateMaterialData(MaterialData m) {
 		int ID = Collections.binarySearch(knownmaterials, m.getName());
 		if (ID < 0) {
@@ -138,11 +145,11 @@ public class MaterialLoader implements Serializable{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public void removeMaterialData(String string) {
 		knownmaterials.remove(string);
 		delete(savedir+string+filetype);
 		
-		for (String m: knownmaterials) System.out.println(m);
 		MaterialLoader saveobj = new MaterialLoader();
 		saveobj.knownmaterials = (ArrayList<String>) this.knownmaterials.clone();
 		save(savedir+savename, saveobj);
@@ -150,8 +157,7 @@ public class MaterialLoader implements Serializable{
 
 
 	private void delete(String string) {
-		System.out.println(new File(string).exists());
-		System.out.println(new File(string).delete());
+		new File(string).delete();
 		
 	}
 

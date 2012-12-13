@@ -1,10 +1,9 @@
 package editor;
-import loaders.MaterialData;
+
 import loaders.MaterialLoader;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector2f;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.math.Vector3f;
@@ -69,9 +68,16 @@ public class RoomNode extends Node{
 		texCoord[2] = new Vector2f(0,1);
 		texCoord[3] = new Vector2f(1,1);
 		
+		Vector2f[] backTexCoords = new Vector2f[4];
+		backTexCoords[0] = new Vector2f(1,0);
+		backTexCoords[1] = new Vector2f(1,1);
+		backTexCoords[2] = new Vector2f(0,0);
+		backTexCoords[3] = new Vector2f(0,1);
+		
+		
 		Vector3f [] vertices = new Vector3f[4];
 		
-		Geometry geo = null;
+		
 		//down
 		if (!wallnode.isPlot(x, y-1, z)) {
 			vertices[0] = new Vector3f(0,0,0);
@@ -84,7 +90,7 @@ public class RoomNode extends Node{
 			mesh.setBuffer(Type.Index,    3, BufferUtils.createIntBuffer(indexes));
 			mesh.updateBound();
 
-			geo = buildgeo(am, mesh, 0);
+			buildgeo(am, mesh, 0);
 			mesh = new Mesh();
 			
 			//geo.setLocalTranslation(geo.getLocalTranslation().add(new Vector3f(0, -0.5f*factor, 0)));
@@ -98,11 +104,11 @@ public class RoomNode extends Node{
 			vertices[3] = new Vector3f(1,0,1);
 			
 			mesh.setBuffer(Type.Position, 3, BufferUtils.createFloatBuffer(vertices));
-			mesh.setBuffer(Type.TexCoord, 2, BufferUtils.createFloatBuffer(texCoord));
+			mesh.setBuffer(Type.TexCoord, 2, BufferUtils.createFloatBuffer(backTexCoords));
 			mesh.setBuffer(Type.Index,    3, BufferUtils.createIntBuffer(indexes));
 			mesh.updateBound();
 
-			geo = buildgeo(am, mesh, 1);
+			buildgeo(am, mesh, 1);
 			mesh = new Mesh();
 			}
 		//front
@@ -118,7 +124,7 @@ public class RoomNode extends Node{
 			mesh.setBuffer(Type.Index,    3, BufferUtils.createIntBuffer(indexes));
 			mesh.updateBound();
 
-			geo = buildgeo(am, mesh, 2);
+			buildgeo(am, mesh, 2);
 			mesh = new Mesh();
 				}
 
@@ -131,11 +137,11 @@ public class RoomNode extends Node{
 			vertices[3] = new Vector3f(1,1,0);
 			
 			mesh.setBuffer(Type.Position, 3, BufferUtils.createFloatBuffer(vertices));
-			mesh.setBuffer(Type.TexCoord, 2, BufferUtils.createFloatBuffer(texCoord));
+			mesh.setBuffer(Type.TexCoord, 2, BufferUtils.createFloatBuffer(backTexCoords));
 			mesh.setBuffer(Type.Index,    3, BufferUtils.createIntBuffer(indexes));
 			mesh.updateBound();
 
-			geo = buildgeo(am, mesh, 3);
+			buildgeo(am, mesh, 3);
 			mesh = new Mesh();
 				}
 		//Right
@@ -147,11 +153,11 @@ public class RoomNode extends Node{
 			vertices[3] = new Vector3f(0,1,1);
 			
 			mesh.setBuffer(Type.Position, 3, BufferUtils.createFloatBuffer(vertices));
-			mesh.setBuffer(Type.TexCoord, 2, BufferUtils.createFloatBuffer(texCoord));
+			mesh.setBuffer(Type.TexCoord, 2, BufferUtils.createFloatBuffer(backTexCoords));
 			mesh.setBuffer(Type.Index,    3, BufferUtils.createIntBuffer(indexes));
 			mesh.updateBound();
 
-			geo = buildgeo(am, mesh, 4);
+			buildgeo(am, mesh, 4);
 			mesh = new Mesh();
 				}
 		//Left
@@ -167,21 +173,20 @@ public class RoomNode extends Node{
 			mesh.setBuffer(Type.Index,    3, BufferUtils.createIntBuffer(indexes));
 			mesh.updateBound();
 
-			geo = buildgeo(am, mesh, 5);
+			buildgeo(am, mesh, 5);
 			mesh = new Mesh();
 		}
 		
 		
 	}
 
-	protected Geometry buildgeo(AssetManager am, Mesh mesh, int position) {
+	protected void buildgeo(AssetManager am, Mesh mesh, int position) {
 		Geometry geo = new Geometry(Positions.positions[position], mesh);
 		Material mat = getMaterial(position, am);
 		geo.setMaterial(mat);
 		geo.setLocalTranslation(new Vector3f(x*factor,y*factor,z*factor).add(getPostionFactor(position)));
 		geo.setLocalScale(factor);
 		attachChild(geo);
-		return geo;
 	}
 
 	private static Vector3f getPostionFactor(int position) {
@@ -238,13 +243,19 @@ public class RoomNode extends Node{
 		 {x, y, z+1}};
 		return result;
 	}
-	public void updateMaterial(Geometry geo, String materialName, AssetManager am) {
+	public boolean updateMaterial(String name, String materialName, AssetManager am) {
 		
-		setMaterial(Positions.PostitionIDByString(geo.getName()), materialName, am);
+		return setMaterial(Positions.PostitionIDByString(name), materialName, am);
 	}
-	private void setMaterial(int postition, String materialName, AssetManager am) {
+	private boolean setMaterial(int postition, String materialName, AssetManager am) {
 		Materials[postition] = materialName;
-		getChild(Positions.positions[postition]).setMaterial(getMaterial(postition, am));
+		Material m = getMaterial(postition, am);
+		Geometry geo = (Geometry) getChild(Positions.positions[postition]);
+		if (geo != null && !m.equals(geo.getMaterial())) {
+			getChild(Positions.positions[postition]).setMaterial(getMaterial(postition, am)); 
+			return true;
+			}
+		else return false;
 		
 	}
 }

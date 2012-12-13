@@ -1,18 +1,9 @@
-import java.awt.Color;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import util.Converter;
-
-import com.jme3.math.ColorRGBA;
-import com.jme3.shader.VarType;
 
 
 import defs.Maindefinitions;
 
 
-public class main {
+public class Main {
 
 	/**
 	 * @param args
@@ -22,7 +13,7 @@ public class main {
 		Maindefinitions.checkFolders();
 	
 		
-		new editor.MaterialManager();
+		new editor.BasicRoomBuilder().start();
 	}
 
 }

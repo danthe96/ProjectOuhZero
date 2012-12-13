@@ -24,7 +24,6 @@ INDEX VERSION 1.126+C:\Users\David\Documents\GitHub\ProjectOuh\workspace\.metada
 1541377080.index
 4173023868.index
 573543369.index
-1350449203.index
 1818563445.index
 1158699310.index
 305854171.index

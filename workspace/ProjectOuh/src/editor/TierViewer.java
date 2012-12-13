@@ -3,14 +3,13 @@ package editor;
 
 import javax.swing.JFrame;
 
-import com.jme3.app.SimpleApplication;
-import com.jme3.math.Rectangle;
-import com.jme3.math.Vector3f;
-import com.jme3.scene.Geometry;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 public class TierViewer extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int viewedDimension = 0;
 	int direction = -1;
 	int viewedPoint = 0;

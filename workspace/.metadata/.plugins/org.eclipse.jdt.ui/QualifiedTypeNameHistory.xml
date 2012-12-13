@@ -22,15 +22,19 @@
 <fullyQualifiedTypeName name="com.jme3.math.Vector3f"/>
 <fullyQualifiedTypeName name="com.jme3.asset.AssetManager"/>
 <fullyQualifiedTypeName name="java.util.Comparator"/>
-<fullyQualifiedTypeName name="editor.RoomNode"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="editor.NoRoomNode"/>
-<fullyQualifiedTypeName name="defs.Positions"/>
 <fullyQualifiedTypeName name="com.jme3.scene.Geometry"/>
 <fullyQualifiedTypeName name="com.jme3.font.BitmapText"/>
 <fullyQualifiedTypeName name="com.jme3.input.controls.KeyTrigger"/>
 <fullyQualifiedTypeName name="com.jme3.input.KeyInput"/>
-<fullyQualifiedTypeName name="editor.MaterialManager"/>
 <fullyQualifiedTypeName name="loaders.MaterialLoader"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="com.jme3.math.Vector2f"/>
+<fullyQualifiedTypeName name="defs.Positions"/>
+<fullyQualifiedTypeName name="editor.RoomNode"/>
+<fullyQualifiedTypeName name="editor.BasicRoomBuilder"/>
+<fullyQualifiedTypeName name="editor.MaterialManager"/>
+<fullyQualifiedTypeName name="java.util.logging.Logger"/>
+<fullyQualifiedTypeName name="java.util.logging.Level"/>
 </qualifiedTypeNameHistroy>

@@ -1,6 +1,8 @@
 package editor;
 
-import java.util.ArrayList;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -8,7 +10,6 @@ import javax.swing.JOptionPane;
 import loaders.MaterialLoader;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.asset.AssetManager;
 import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
@@ -19,25 +20,12 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Ray;
-import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Geometry;
-import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
-import com.jme3.system.JmeContext;
-
-import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.LayerBuilder;
-import de.lessvoid.nifty.builder.PanelBuilder;
-import de.lessvoid.nifty.builder.ScreenBuilder;
-import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
-import de.lessvoid.nifty.screen.DefaultScreenController;
 
 
 public class BasicRoomBuilder extends SimpleApplication{
 
-	private static final String DEL_BLOCK = "Del Block";
 
-	private static final String ADD_BLOCK = "Add Block";
 	private static final String FIRST_TOOL = "First Tool";
 	private static final String SECOUND_TOOL = "Secound Tool";
 	private static final String OPENMM = "open Material Manager";
@@ -84,7 +72,6 @@ public class BasicRoomBuilder extends SimpleApplication{
 		    }
 
 			public void useTool(Geometry geo, int ToolID) {
-				
 				if (ToolID == -1) {
 					wallnode.removeBlock(RoomNode.getCoordsByGeometry(geo), assetManager,geo.getName());
 					return;
@@ -92,17 +79,13 @@ public class BasicRoomBuilder extends SimpleApplication{
 				if (ToolID == -2) {
 					wallnode.addAndUpdate(new RoomNode(geo), assetManager);
 					return;
-				}//MaterialLoader.getLoader().getKnownMaterials()[ToolID]
-				wallnode.updateMaterial(geo,MaterialLoader.getLoader().getKnownMaterials()[ToolID], getAssetManager());
+				}
+				wallnode.updateMaterial(geo,MaterialLoader.getLoader().getKnownMaterials()[ToolID], getAssetManager(), applytoall);
 				
 			}
 	  };
 	
 	
-	public static void main(String[] args) {
-		new BasicRoomBuilder().start();
-
-	}
 	protected void selectMaterial(String name) {
 		String[] materials = MaterialLoader.getLoader().getKnownMaterials();
 		String[] options = new String[materials.length+2];
@@ -152,6 +135,10 @@ public class BasicRoomBuilder extends SimpleApplication{
 
 	@Override
 	public void simpleInitApp() {
+		
+		System.out.println("Logger turned off!");
+		Logger.getLogger("").setLevel(Level.SEVERE);
+		
 		initNodes();
 		int[] startvalues = {0,0,0};
 		int[] endvalues = {wallnode.openRoomEndDimensions[0]+1,wallnode.openRoomEndDimensions[1]+1,wallnode.openRoomEndDimensions[2]+1};
