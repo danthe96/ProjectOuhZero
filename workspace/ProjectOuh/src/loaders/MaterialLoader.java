@@ -96,16 +96,16 @@ public class MaterialLoader implements Serializable{
 	}
 	
 	private void save(String filepath, Object ob) {
-		ObjectOutputStream o = null;  
+		OutputStream fis = null;  
 		try 
 		{ 
-		  OutputStream fis = new FileOutputStream(filepath); 
-		  o = new ObjectOutputStream( fis ); 
+		  fis = new FileOutputStream(filepath); 
+		  ObjectOutputStream o = new ObjectOutputStream( fis ); 
 		  o.writeObject(ob);
 		} 
 		catch ( IOException e ) { 
 			System.err.println( e ); }
-		try { o.close(); } catch ( Exception e ) { } 
+		try { fis.close(); } catch ( Exception e ) { } 
 		
 	}
 
@@ -127,12 +127,12 @@ public class MaterialLoader implements Serializable{
 	}
 
 	private static Object load(String filepath) {
-		ObjectInputStream o = null; 
+		InputStream fis = null; 
 		Object ob; 
 		try 
 		{ 
-		  InputStream fis = new FileInputStream(filepath); 
-		  o = new ObjectInputStream( fis ); 
+		  fis = new FileInputStream(filepath); 
+		  ObjectInputStream o = new ObjectInputStream( fis ); 
 		  ob = o.readObject(); 
 		} 
 		catch ( IOException e ) { 
@@ -140,7 +140,7 @@ public class MaterialLoader implements Serializable{
 			return null;} 
 		catch ( ClassNotFoundException e ) { System.err.println( e );
 			return null;} 
-		finally { try { o.close(); } catch ( Exception e ) { } }
+		finally { try { fis.close(); } catch ( Exception e ) { } }
 		return ob;
 	}
 
