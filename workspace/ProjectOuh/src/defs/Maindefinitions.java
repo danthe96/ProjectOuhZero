@@ -19,7 +19,7 @@ public class Maindefinitions {
 
 
 	public static void checkFolders() {
-	   makedirs = !new File(maindirectory).exists();
+	   makedirs = !(new File(maindirectory).exists() && new File(savesdirectory).exists());
 	   if (makedirs) {
 		   new File(maindirectory).mkdir();
 		   new File(savesdirectory).mkdir();
