@@ -1,6 +1,7 @@
 
 
 import defs.Maindefinitions;
+import editor.BasicRoomBuilder;
 
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Maindefinitions.checkFolders();
-		new editor.BasicRoomBuilder().start();
+		new BasicRoomBuilder().start();
 	}
 
 }

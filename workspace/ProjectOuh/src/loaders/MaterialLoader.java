@@ -30,7 +30,7 @@ public class MaterialLoader implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static String savedir = defs.Maindefinitions.getSavesdirectory() + "Materials/";
+	static String savedir = Maindefinitions.savesdirectory + "Materials/";
 	static String savename = "Materials.main";
 	static String filetype =".save";
 	static MaterialLoader ml;

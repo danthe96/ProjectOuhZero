@@ -179,7 +179,7 @@ public class BasicRoomBuilder extends SimpleApplication{
 	    String seperator = System.getProperty("line.separator");
 	    ch = new BitmapText(guiFont, false);
 	    ch.setSize(guiFont.getCharSet().getRenderedSize());
-	    ch.setText("M for Material Manager"+seperator+"F for First Tool"+seperator+"G for Secound Tool"+seperator+"E for 'apply to area'"+seperator+"R for rebuilding textures");       
+	    ch.setText("M for Material Manager"+seperator+"F for First Tool"+seperator+"G for second Tool"+seperator+"E for 'apply to area'"+seperator+"R for rebuilding textures");       
 	    ch.setLocalTranslation(0, settings.getHeight()/2 + ch.getLineHeight() / 2, 0);
 	    guiNode.attachChild(ch);
 	   
