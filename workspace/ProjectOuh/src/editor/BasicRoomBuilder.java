@@ -140,8 +140,14 @@ public class BasicRoomBuilder extends SimpleApplication{
 
 	@Override
 	public void simpleInitApp() {
+		flyCam.setDragToRotate(true);					//man muss durch klicken die Kamera drehen, damit die Maus Frei wird
 		
-		flyCam.setDragToRotate(true);
+		if (inputManager.hasMapping("FLYCAM_RotateDrag"))
+			inputManager.deleteMapping("FLYCAM_RotateDrag");
+		inputManager.addMapping("FLYCAM_RotateDrag", new MouseButtonTrigger(MouseInput.BUTTON_MIDDLE));
+		//inputManager.addListener(flyCam, "FLYCAM_RotateDrag");
+		//Dadurch, dass es läuft, obwohl dem kein Listener zugewiesen wird, wird das ganze nachher leider überschrieben -.-. Nur wo ?		
+
 		
 		System.out.println("Logger turned off!");
 		Logger.getLogger("").setLevel(Level.SEVERE);
@@ -156,6 +162,8 @@ public class BasicRoomBuilder extends SimpleApplication{
 		rootNode.addLight(ambient);
 		initCrossHairs();
 		initTrigger();
+		
+		
 		
 	}
 
