@@ -122,10 +122,10 @@ public class BasicRoomBuilder extends SimpleApplication{
 		else secondTool = i;
 		
 	}
-	@Override
-    public void simpleUpdate(float tpf) {
-	
-    }
+//	@Override
+//    public void simpleUpdate(float tpf) {
+//	
+//    }
 	public void updateWall() {
 		wallnode.buildwall(assetManager);
 	}
@@ -140,6 +140,8 @@ public class BasicRoomBuilder extends SimpleApplication{
 
 	@Override
 	public void simpleInitApp() {
+		
+		flyCam.setDragToRotate(true);
 		
 		System.out.println("Logger turned off!");
 		Logger.getLogger("").setLevel(Level.SEVERE);
