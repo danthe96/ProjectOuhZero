@@ -10,16 +10,10 @@ public class Maindefinitions {
     public static final String maindirectory =System.getProperty("user.home") +"/Project Ouh "+ version +"/";
     public static final String savesdirectory = maindirectory +"Saves/";
     public static boolean makedirs = true;
-    
-    
-	public static String getSavesdirectory() {
-		return savesdirectory;
-	}
-
-
+  
 
 	public static void checkFolders() {
-	   makedirs = !new File(maindirectory).exists();
+	   makedirs = !(new File(maindirectory).exists() && new File(savesdirectory).exists());
 	   if (makedirs) {
 		   new File(maindirectory).mkdir();
 		   new File(savesdirectory).mkdir();

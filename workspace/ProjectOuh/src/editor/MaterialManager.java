@@ -28,6 +28,7 @@ public class MaterialManager extends JFrame implements ActionListener, MouseList
 	public MaterialManager() {
 
 		setLayout(new GridLayout(4,2)); 
+		setTitle("Material Manager");
 		JButton update = new JButton("update");
 		update.addActionListener(this);
 		add(update);
@@ -93,11 +94,13 @@ public class MaterialManager extends JFrame implements ActionListener, MouseList
 
 		   int row = table.rowAtPoint(e.getPoint());
 		  int column = table.columnAtPoint(e.getPoint());
+		  if(row>-1 && row < table.getRowCount()){
 		   if (column == 2 && 0 == JOptionPane.showConfirmDialog(new JFrame(), "Sicher?")) {
 			   ml.removeMaterialData(ml.knownmaterials.get(row));
 		   }
 		   if (column == 1) editMaterial(ml.getMaterialData(row));
 		   inittable();
+		  }
 		}
 
 	@Override

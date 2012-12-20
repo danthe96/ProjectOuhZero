@@ -47,7 +47,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 	public MaterialViewer(MaterialData m) {
 		if (m== null) {
 			m = new MaterialData(true);
-			setTitle("new");
+			setTitle("Add Material");
 		}
 		else setTitle(m.getName());
 		this.m = m;
@@ -233,6 +233,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 		int row = table.rowAtPoint(e.getPoint());
 		int column = table.columnAtPoint(e.getPoint());
 		Object[][] tabledata = m.getTableData();
+		if(row>-1 && row < table.getRowCount()){
 		   if (column == 3 && 0 == JOptionPane.showConfirmDialog(new JFrame(), "Sicher?")) {
 			   m.remove(row);
 		   }
@@ -259,6 +260,7 @@ public class MaterialViewer extends JFrame implements ActionListener, MouseListe
 				//JOptionPane.showMessageDialog(null, "Ooooops, that is not a picture :§");
 				e1.printStackTrace();
 			}
+		}
 		}
 	}
 

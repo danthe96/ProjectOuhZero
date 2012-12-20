@@ -30,7 +30,7 @@ public class MaterialLoader implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static String savedir = defs.Maindefinitions.getSavesdirectory() + "Materials/";
+	static String savedir = Maindefinitions.savesdirectory + "Materials/";
 	static String savename = "Materials.main";
 	static String filetype =".save";
 	static MaterialLoader ml;
@@ -96,16 +96,16 @@ public class MaterialLoader implements Serializable{
 	}
 	
 	private void save(String filepath, Object ob) {
-		OutputStream fis = null;  
+		ObjectOutputStream o = null;  
 		try 
 		{ 
-		  fis = new FileOutputStream(filepath); 
-		  ObjectOutputStream o = new ObjectOutputStream( fis ); 
+		  OutputStream fis = new FileOutputStream(filepath); 
+		  o = new ObjectOutputStream( fis ); 
 		  o.writeObject(ob);
 		} 
 		catch ( IOException e ) { 
 			System.err.println( e ); }
-		try { fis.close(); } catch ( Exception e ) { } 
+		try { o.close(); } catch ( Exception e ) { } 
 		
 	}
 
@@ -127,12 +127,12 @@ public class MaterialLoader implements Serializable{
 	}
 
 	private static Object load(String filepath) {
-		InputStream fis = null; 
+		ObjectInputStream o = null; 
 		Object ob; 
 		try 
 		{ 
-		  fis = new FileInputStream(filepath); 
-		  ObjectInputStream o = new ObjectInputStream( fis ); 
+		  InputStream fis = new FileInputStream(filepath); 
+		  o = new ObjectInputStream( fis ); 
 		  ob = o.readObject(); 
 		} 
 		catch ( IOException e ) { 
@@ -140,7 +140,7 @@ public class MaterialLoader implements Serializable{
 			return null;} 
 		catch ( ClassNotFoundException e ) { System.err.println( e );
 			return null;} 
-		finally { try { fis.close(); } catch ( Exception e ) { } }
+		finally { try { o.close(); } catch ( Exception e ) { } }
 		return ob;
 	}
 
