@@ -38,9 +38,6 @@ public class BasicRoomBuilder extends SimpleApplication{
 	private int secondTool = -1;
 	
 	private boolean applytoall = false;
-	/**
-	 * @param args
-	 */
 	
 	WallNode wallnode = new WallNode("wallnode");
 	
@@ -122,10 +119,10 @@ public class BasicRoomBuilder extends SimpleApplication{
 		else secondTool = i;
 		
 	}
-//	@Override
+/*	@Override
 //    public void simpleUpdate(float tpf) {
 //	
-//    }
+    }*/
 	public void updateWall() {
 		wallnode.buildwall(assetManager);
 	}

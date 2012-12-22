@@ -31,9 +31,10 @@ public class Main {
 			public void run() {
 				// Einstellungen für die JME
 				AppSettings settings = new AppSettings(true);  
-				settings.setWidth(640);
-				settings.setHeight(480);
-				settings.setFrameRate(120);
+		    	  settings.setResolution(640, 480);
+		    	  settings.setBitsPerPixel(32);
+		    	  settings.setSamples(4);
+		    	  settings.setFrameRate(120);
 				
 				
 				BasicRoomBuilder canvasApplication = new BasicRoomBuilder();
@@ -55,7 +56,7 @@ public class Main {
 				JMenu fileMenu = new JMenu( "Datei", true);
 				menuBar.add( fileMenu );
 				
-				fileMenu.add( new NewLevelAction("Neu") );
+				fileMenu.add( new NewLevelAction("Neu",canvasApplication) );
 				fileMenu.add( new LoadLevelAction("Öffnen") );
 				fileMenu.add( new SaveLevelAction("Speichern") );
 				fileMenu.add( new CloseEditorAction("Beenden") );
