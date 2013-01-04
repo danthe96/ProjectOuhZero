@@ -20,6 +20,8 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Ray;
+import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 
 
@@ -47,8 +49,11 @@ public class BasicRoomBuilder extends SimpleApplication{
 		    	if (keyPressed) {
 		    		if (name.equals(FIRST_TOOL) || name.equals(SECOND_TOOL))
 		    		{
+		    			Vector2f click2d = inputManager.getCursorPosition();
+		    	        Vector3f click3d = cam.getWorldCoordinates(new Vector2f(click2d.x, click2d.y), 0f).clone();
+		    	        Vector3f dir = cam.getWorldCoordinates(new Vector2f(click2d.x, click2d.y), 1f).subtractLocal(click3d).normalizeLocal();
 		    			CollisionResults results = new CollisionResults();
-		    			Ray ray = new Ray(cam.getLocation(), cam.getDirection());
+		    			Ray ray = new Ray(cam.getLocation(), dir);
 		    			wallnode.collideWith(ray, results);
 		        	
 		    			if (results.size() >0) {
@@ -176,15 +181,9 @@ public class BasicRoomBuilder extends SimpleApplication{
 	}
 
 	void initCrossHairs() { 
-	    guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
-	    BitmapText ch = new BitmapText(guiFont, false);
-	    ch.setSize(guiFont.getCharSet().getRenderedSize() * 3);
-	    ch.setText("+");       
-	    ch.setLocalTranslation(settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() *2/3, settings.getHeight()/2 + ch.getLineHeight() / 2, 0);
-	    guiNode.attachChild(ch);
 	    
 	    String seperator = System.getProperty("line.separator");
-	    ch = new BitmapText(guiFont, false);
+	    BitmapText ch = new BitmapText(guiFont, false);
 	    ch.setSize(guiFont.getCharSet().getRenderedSize());
 	    ch.setText("M for Material Manager"+seperator+"F for First Tool"+seperator+"G for second Tool"+seperator+"E for 'apply to area'"+seperator+"R for rebuilding textures");       
 	    ch.setLocalTranslation(0, settings.getHeight()/2 + ch.getLineHeight() / 2, 0);
