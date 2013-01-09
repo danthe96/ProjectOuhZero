@@ -1,5 +1,8 @@
 package editor;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.MouseButtonTrigger;
@@ -11,6 +14,8 @@ public class SwingCanvasTest extends SimpleApplication {
 
 	@Override
 	public void simpleInitApp() {
+		System.out.println("Logger turned off!");
+		Logger.getLogger("").setLevel(Level.SEVERE);
 
 		flyCam.setDragToRotate(true);
 		if (inputManager.hasMapping("FLYCAM_RotateDrag"))
@@ -18,18 +23,22 @@ public class SwingCanvasTest extends SimpleApplication {
 		inputManager.addMapping("FLYCAM_RotateDrag", new MouseButtonTrigger(MouseInput.BUTTON_MIDDLE));
 		inputManager.addListener(flyCam,"FLYCAM_RotateDrag");
 		
+		
+		
+		
+		//Test:
 		Quad mesh =new Quad(1,1);
 
-		
 		Geometry geom = new Geometry("A shape", mesh); // wrap shape into geometry
-		Material mat = new Material(assetManager,      
-		    "Common/MatDefs/Misc/ShowNormals.j3md");   // create material
-		geom.setMaterial(mat);                         // assign material to geometry
+		Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");   // create material
+		System.out.println("ALLO"+mat); 
+		mat.setTexture("ColorMap", assetManager.loadTexture("Assets/test.png"));
+
+		geom.setMaterial(mat);       					// assign material to geometry
 		Geometry geom2=geom.clone();
 		geom.move(1,2,4);
 		geom2.move(2,3,4);
-		
-		
+
 		// if you want, transform (move, rotate, scale) the geometry.
 		rootNode.attachChild(geom);                    // attach geometry to a node
 		rootNode.attachChild(geom2);        
