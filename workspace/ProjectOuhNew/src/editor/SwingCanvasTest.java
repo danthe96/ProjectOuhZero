@@ -39,11 +39,10 @@ public class SwingCanvasTest extends SimpleApplication {
 		geom.move(1,2,4);
 		geom2.move(2,3,4);
 
-		// if you want, transform (move, rotate, scale) the geometry.
 		rootNode.attachChild(geom);                    // attach geometry to a node
 		rootNode.attachChild(geom2);        
 		        
-		        
+		     
 		        
 		        
 	}
