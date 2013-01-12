@@ -15,7 +15,7 @@ import com.jme3.util.BufferUtils;
 import defs.Positions;
 
 
-
+//TODO rebuild
 public class RoomNode extends Node{
 
 	static char CoordSeperator = ' ';

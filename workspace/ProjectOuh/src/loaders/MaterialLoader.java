@@ -24,6 +24,10 @@ import com.jme3.material.Material;
 import defs.Maindefinitions;
 import editor.MaterialManager;
 
+/**
+ * @author Bender
+ * This class manages a Materials.They a saved as MaterialData with Serialization and loaded when needed.
+ */
 public class MaterialLoader implements Serializable{
 
 	/**
@@ -38,6 +42,9 @@ public class MaterialLoader implements Serializable{
 	ArrayList<Material> materials = new ArrayList<Material>(); // hier stehen alle Materialien drinnen die schon einmal vom Programm geladen wurden.
 	public ArrayList<String> knownmaterials = new ArrayList<String>(); // hier steht der Rest :)
 	
+	/**
+	 * Theres only one Loader at any time, so you can get it with this method.
+	 */
 	public static MaterialLoader getLoader(){
 		
 		
@@ -52,6 +59,11 @@ public class MaterialLoader implements Serializable{
 	}
 
 	
+	/**
+	 * Returns a saved Material by a name. Needs an AssetManager to load the texture.
+	 * @param Name
+	 * @return Material
+	 */
 	public Material get(String Name, AssetManager am) {
 		Material m = new Material();
 		m.setName(Name);
@@ -67,12 +79,18 @@ public class MaterialLoader implements Serializable{
 		knownmaterials.toArray(result);
 		return result;
 	}
+	/**
+	 * Loads saved MaterialLoader
+	 */
 	private static MaterialLoader loadML() {
-		System.out.println(Maindefinitions.makedirs);
 		if (Maindefinitions.makedirs) new File(savedir).mkdir();
 		return (MaterialLoader) load( savedir+savename );
 	}
 
+	/**
+	 * If a MaterialData is edited this method has to be cast. Also, it will save the material directly.
+	 * @param materialData
+	 */
 	@SuppressWarnings("unchecked")
 	public void updateMaterialData(MaterialData m) {
 		int ID = Collections.binarySearch(knownmaterials, m.getName());

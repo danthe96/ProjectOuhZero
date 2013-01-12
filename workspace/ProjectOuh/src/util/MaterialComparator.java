@@ -4,6 +4,10 @@ import java.util.Comparator;
 
 import com.jme3.material.Material;
 
+/**
+ * @author Bender
+ * Needed to sort Materials. They are sorted by their names.
+ */
 public class MaterialComparator  implements Comparator<Material>{
 
 	

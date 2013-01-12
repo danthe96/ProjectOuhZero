@@ -22,9 +22,15 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.scene.Geometry;
 
 
+/**
+ * @author Bender
+ * Contains the editor JME3 scene.
+ */
 public class BasicRoomBuilder extends SimpleApplication{
 
 
@@ -45,6 +51,9 @@ public class BasicRoomBuilder extends SimpleApplication{
 	
 	  private ActionListener actionListener = new ActionListener() {
 		  
+		    /* (non-Javadoc)
+		     * @see com.jme3.input.controls.ActionListener#onAction(java.lang.String, boolean, float)
+		     */
 		    public void onAction(String name, boolean keyPressed, float tpf) {
 		    	if (keyPressed) {
 		    		if (name.equals(FIRST_TOOL) || name.equals(SECOND_TOOL))
@@ -76,6 +85,11 @@ public class BasicRoomBuilder extends SimpleApplication{
 		    }
 		    
 		    
+			/**
+			 * Uses a tool on a geometry.
+			 * @param geo
+			 * @param ToolID
+			 */
 			public void useTool(Geometry geo, int ToolID) {
 				if (ToolID == -1) {
 					wallnode.removeBlock(RoomNode.getCoordsByGeometry(geo), assetManager,geo.getName());
@@ -91,7 +105,10 @@ public class BasicRoomBuilder extends SimpleApplication{
 	  };
 	  
 	  
-	  public BasicRoomBuilder() {
+	  /**
+	 * Creates a BasicRoom by getting some basic dimensions
+	 */
+	public BasicRoomBuilder() {
 			wallnode.openRoomEndDimensions[0] = Integer.parseInt(JOptionPane.showInputDialog("Enter length"))-2;
 			wallnode.openRoomEndDimensions[1] = Integer.parseInt(JOptionPane.showInputDialog("Enter depth"))-2;
 			wallnode.openRoomEndDimensions[2] = Integer.parseInt(JOptionPane.showInputDialog("Enter height"))-2;
@@ -100,6 +117,9 @@ public class BasicRoomBuilder extends SimpleApplication{
 			
 		}
 	
+	/** Opens a dialogue to change the tool given in the parameter.
+	 * @param ToolName
+	 */
 	protected void selectMaterial(String name) {
 		String[] materials = MaterialLoader.getLoader().getKnownMaterials();
 		String[] options = new String[materials.length+2];
@@ -128,11 +148,17 @@ public class BasicRoomBuilder extends SimpleApplication{
 //    public void simpleUpdate(float tpf) {
 //	
     }*/
+	/**
+	 * updates all walls
+	 */
 	public void updateWall() {
 		wallnode.buildwall(assetManager);
 	}
 	
 	
+	/**
+	 * Initializes the nodes (not much currently)
+	 */
 	private void initNodes() {
 		rootNode.attachChild(wallnode);
 		
@@ -140,6 +166,9 @@ public class BasicRoomBuilder extends SimpleApplication{
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see com.jme3.app.SimpleApplication#simpleInitApp()
+	 */
 	@Override
 	public void simpleInitApp() {
 		flyCam.setDragToRotate(true);					//man muss durch klicken die Kamera drehen, damit die Maus Frei wird
@@ -159,16 +188,26 @@ public class BasicRoomBuilder extends SimpleApplication{
 		int[] endvalues = {wallnode.openRoomEndDimensions[0]+1,wallnode.openRoomEndDimensions[1]+1,wallnode.openRoomEndDimensions[2]+1};
 		wallnode.generateRoom(assetManager,startvalues, endvalues);
 		
-		AmbientLight ambient = new AmbientLight();
-		ambient.setColor(ColorRGBA.White);
-		rootNode.addLight(ambient);
+		
 		initCrossHairs();
 		initTrigger();
 		
-		
+		initLights();
 		
 	}
 
+	/**
+	 * ambient light.
+	 */
+	private void initLights() {
+		AmbientLight ambient = new AmbientLight();
+		ambient.setColor(ColorRGBA.White);
+		rootNode.addLight(ambient);
+	}
+
+	/**
+	 * Initializes the Input Mapping
+	 */
 	private void initTrigger() {
 		inputManager.addMapping(FIRST_TOOL, new MouseButtonTrigger(MouseInput.BUTTON_LEFT)); inputManager.addListener(actionListener, FIRST_TOOL);
 		inputManager.addMapping(SECOND_TOOL, new MouseButtonTrigger(MouseInput.BUTTON_RIGHT)); inputManager.addListener(actionListener, SECOND_TOOL);
@@ -181,7 +220,7 @@ public class BasicRoomBuilder extends SimpleApplication{
 	}
 
 	void initCrossHairs() { 
-	    
+	    // TODO remove
 	    String seperator = System.getProperty("line.separator");
 	    BitmapText ch = new BitmapText(guiFont, false);
 	    ch.setSize(guiFont.getCharSet().getRenderedSize());

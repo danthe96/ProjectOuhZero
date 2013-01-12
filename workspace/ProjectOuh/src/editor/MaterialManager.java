@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 
 import loaders.MaterialData;
 import loaders.MaterialLoader;
-
+//TODO rebuild
 public class MaterialManager extends JFrame implements ActionListener, MouseListener{
 
 	/**

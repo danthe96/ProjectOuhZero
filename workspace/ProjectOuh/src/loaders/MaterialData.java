@@ -9,6 +9,11 @@ import com.jme3.asset.TextureKey;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 
+/**
+ * As the JME Material needs an AssetManager, which is connected to a JME scene, MaterialData is needed to store Material data.
+ * @author David
+ *
+ */
 public class MaterialData implements Comparable<MaterialData>, Serializable{
 
 	/**
@@ -19,11 +24,19 @@ public class MaterialData implements Comparable<MaterialData>, Serializable{
 	private String MaterialPath ="Common/MatDefs/Light/Lighting.j3md";
 	public ArrayList<Data> data = new ArrayList<Data>();
 	
+	/**
+	 * Needed for Serialization. DO NOT DELETE!
+	 */
 	public MaterialData() {
 		
 	}
+	/** 
+	 * If generateBase is true, some basic values are added to the MaterialData
+	 * @param generateBase
+	 */
 	public MaterialData(boolean generateBase) {
 		if (generateBase) {
+			//TODO add all values
 			add("UseMaterialColors","boo", "true");
 			add("Ambient","Col", Color.white);
 			add("Diffuse","Col",Color.white);
@@ -50,6 +63,9 @@ public class MaterialData implements Comparable<MaterialData>, Serializable{
 		MaterialPath = materialPath;
 	}
 
+	/**
+	 * Adds a parameter to the MaterialData. 
+	 */
 	public void add(String name, String Type, Object value) {
 		Data d = new Data();
 		d.Name = name;
@@ -57,6 +73,10 @@ public class MaterialData implements Comparable<MaterialData>, Serializable{
 		d.setValue(value);
 		data.add(d);
 	}
+	/** 
+	 * Returns the content as data useable for a table
+	 * @return TableData
+	 */
 	public Object[][] getTableData() {
 		Object[][] result = new Object[data.size()][4];
 		int i=0;
@@ -69,7 +89,11 @@ public class MaterialData implements Comparable<MaterialData>, Serializable{
 		}
 		return result;
 	}
-	public class Data implements Serializable{
+	/**
+	 * @author Bender
+	 * Used by MaterialData to store values more easily.
+	 */
+	private class Data implements Serializable{
 		private static final long serialVersionUID = 1L;
 		public String Name;
 		Object value;

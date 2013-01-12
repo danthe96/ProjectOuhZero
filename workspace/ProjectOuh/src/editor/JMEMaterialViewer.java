@@ -12,7 +12,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
-
+//TODO rebuild
 public class JMEMaterialViewer extends SimpleApplication {
 
     float angle;

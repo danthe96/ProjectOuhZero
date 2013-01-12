@@ -9,6 +9,11 @@ import com.jme3.scene.Spatial;
 import defs.Positions;
 
 
+/**
+ * @author Bender
+ * Contains all Wall parts. 
+ */
+//TODO remove extends Node
 public class WallNode extends Node {
 	public int[] openRoomEndDimensions= new int[3]; //In diesem Bereich ist immer Nichts. (Spart VIEL Rechenleistung)
 	public int[] openRoomStartDimensions = {1,1,1};
