@@ -5,12 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -78,26 +74,6 @@ public class Main {
 					
 					window.setJMenuBar( menuBar );
 					
-					class MatPanel extends JPanel{
-						public void initButtons(int j, String[] path){
-							BufferedImage[] buttonIcon = new BufferedImage[j];
-							JButton[] matButton = new JButton[j];
-							
-							for(int i=0;i<j;i++)
-							try {
-								buttonIcon[i] = ImageIO.read(ClassLoader.getSystemClassLoader().getResourceAsStream(path[i]));  
-								matButton[i] = new JButton(new ImageIcon(buttonIcon[i].getScaledInstance(50, 50, 0)));
-								final String imgpath = path[i];
-								matButton[i].addActionListener( new ActionListener() {
-									  @Override public void actionPerformed( ActionEvent e ) {
-									      
-									  }
-									} );
-								this.add(matButton[i]);
-								System.out.println("dx");
-							} catch (IOException e) {System.out.println("acfv");}
-					}
-					}
 					
 					MatPanel p = new MatPanel();
 					
